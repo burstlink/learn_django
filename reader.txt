@@ -1,0 +1,4 @@
+[django]
+创建一个django project: django-admin startproject mysite
+启动web服务: python manage.py runserver x.x.x.x:xxxx
+创建一个app: python manage.py startapp polls
