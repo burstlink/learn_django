@@ -64,3 +64,6 @@ Running migrations:
 运行 python manage.py migrate 来应用数据库迁移。
 
 加载环境python的shell：python manage.py shell
+
+创建管理员账户：python manage.py createsuperuser
+在 polls/admin.py里面添加自己app models中的对象admin.site.register(Question)
