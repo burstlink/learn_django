@@ -1,4 +1,66 @@
 [django]
 创建一个django project: django-admin startproject mysite
+mysite/
+    manage.py #django项目的管理工具
+    mysite/   #项目包
+        __init__.py
+        settings.py #django的配置文件
+        urls.py     #url申明，网站的‘目录’
+        asgi.py     #项目运行在asgi兼容web服务器入口
+        wsgi.py     #项目运行在wsgi兼容web服务器入口
 启动web服务: python manage.py runserver x.x.x.x:xxxx
-创建一个app: python manage.py startapp polls
+创建一个app: python manage.py startapp polls(XXXX)
+polls/
+    __init__.py
+    admin.py
+    apps.py
+    migrations/
+        __init__.py
+    models.py
+    tests.py
+    urls.py
+    views.py
+
+检查项目settings.py中的INSTALLED_APPS列表里的应用创建数据表: python manage.py migrate
+生成的默认表，提前创建数据库
+mysql> show tables;
++----------------------------+
+| Tables_in_django_database  |
++----------------------------+
+| auth_group                 |
+| auth_group_permissions     |
+| auth_permission            |
+| auth_user                  |
+| auth_user_groups           |
+| auth_user_user_permissions |
+| django_admin_log           |
+| django_content_type        |
+| django_migrations          |
+| django_session             |
++----------------------------+
+10 rows in set (0.00 sec)
+
+
+INSTALLED_APPS添加自己的app后执行 makemigrations 命令，Django 会检测你对模型文件的修改
+（在这种情况下，你已经取得了新的），并且把修改的部分储存为一次迁移: python manage.py makemigrations polls
+它被储存在 polls/migrations/0001_initial.py
+Migrations for 'polls':
+  polls\migrations\0001_initial.py
+    - Create model Question
+    - Create model Choice
+
+再次执行migrante命令，生成数据表 python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, polls, sessions
+Running migrations:
+  Applying polls.0001_initial... OK
+
+| polls_choice               |
+| polls_question             |
++----------------------------+
+改变模型需要这三步：
+编辑 models.py 文件，改变模型。
+运行 python manage.py makemigrations 为模型的改变生成迁移文件。
+运行 python manage.py migrate 来应用数据库迁移。
+
+加载环境python的shell：python manage.py shell
