@@ -32,9 +32,9 @@ class IndexView(generic.ListView):
 #     return render(request, 'polls/detail.html', {'question': question})
 
 
-class DetailView(generic.ListView):
+class DetailView(generic.DetailView):
     model = Question
-    template_name = "polls/detail.html"
+    template_name = 'polls/detail.html'
 
 # def results(request, question_id):
 #     # response = 'u r looking at the results of question %s'
@@ -43,9 +43,9 @@ class DetailView(generic.ListView):
 #     return render(request, 'polls/results.html', {'question': question})
 
 
-class ResultsView(generic.ListView):
+class ResultsView(generic.DetailView):
     model = Question
-    template_name = "polls/results.html"
+    template_name = 'polls/results.html'
 
 
 def vote(request, question_id):
